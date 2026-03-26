@@ -79,8 +79,14 @@ def choiceSelector(options : str, validSelections : list) -> int:
     return choice
 
 
+def wordReader(searchTerm : str) -> str:
+    matches = " "
 
-
+    with open("3000words.txt") as wordList:
+        for word in wordList:
+            if re.findall(searchTerm, word, re.IGNORECASE):
+                matches += word + " "
+    return matches
 
 
 main()
