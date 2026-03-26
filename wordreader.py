@@ -14,6 +14,8 @@ def main(): #main loop
 
         if choice == 1:
             read()
+        elif choice == 2:
+            write()
         elif choice == 3:
             remove()
         elif choice == 4:
@@ -32,6 +34,21 @@ def read():
     elif choice == 2:
         letter = input("Please input ending letter (or number): ") + "$" #"$" added to properly use regex
         print( wordReader(letter))
+    return
+
+def write():
+    choice = choiceSelector("Please select a function:\n1)Write word to file\n", [1])
+
+    if choice == 1:
+        with open("3000words.txt", "a") as wordList:
+            word = input("Please write a word: ").lower() #.lower() so i dont have to account for capitalisation
+
+            if wordReader(word) == " ": #if it returns as an empty string with only a space there are no possible matches
+                wordList.write( "\n" + word)
+                print("Word has been added!")
+
+            else:
+                print("Word already exists in list!")
     return
 
 
