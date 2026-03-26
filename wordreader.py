@@ -79,12 +79,12 @@ def choiceSelector(options : str, validSelections : list) -> int:
     return choice
 
 
-def wordReader(searchTerm : str) -> str:
+def wordReader(searchTerm : str) -> str: #simple function to get rid of repeating code segements
     matches = " "
 
     with open("3000words.txt") as wordList:
         for word in wordList:
-            if re.findall(searchTerm, word, re.IGNORECASE):
+            if re.findall(searchTerm, word, re.IGNORECASE): #ignorecase added for consistency
                 matches += word + " "
     return matches
 
