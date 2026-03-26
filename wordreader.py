@@ -1,5 +1,7 @@
 import re
 
+from distro import name
+
 #simple program that allows you to search, remove from or add words to a list conatining the 3000 most common words in the english language.
 
 
@@ -23,9 +25,8 @@ def main(): #main loop
             break
     return
 
-            
 def read():
-    choice = choiceSelector("Please select function:\n1)Read starting with [letters(s)]\n2)Read ending with [letter(s)]\n", [1, 2])
+    choice = choiceSelector("Please select function:\n1)Read starting with [letters(s)]\n2)Read ending with [letter(s)]\n3)Search for word\n", [1, 2, 3])
 
     if choice == 1:
         letter = "^" + input("Please input starting letter (or number): ") #"^" added to properly use regex
@@ -34,6 +35,18 @@ def read():
     elif choice == 2:
         letter = input("Please input ending letter (or number): ") + "$" #"$" added to properly use regex
         print( wordReader(letter))
+
+    elif choice == 3: #making this to show different use cases in regex
+        with open("3000words.txt", "r") as wordList:
+            lines = wordList.readlines()
+            lines = " ".join(lines)
+
+        searchTerm = input("Please input search term: ")
+        result = re.search(searchTerm, lines, re.IGNORECASE) #returns every match so if term not specific enough it leads to issues, don't know how to prevent (if possible with this function)
+        if result == None:
+            print("No matches found!")
+        else:
+            print(result.group())
     return
 
 def write():
