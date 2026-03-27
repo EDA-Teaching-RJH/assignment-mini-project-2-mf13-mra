@@ -1,6 +1,5 @@
 import re
 
-from distro import name
 
 #simple program that allows you to search, remove from or add words to a list conatining the 3000 most common words in the english language.
 
